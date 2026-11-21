@@ -1,0 +1,7 @@
+# Runtime (local run and Streamlit Community Cloud)
+numpy>=1.26
+pandas>=2.1
+matplotlib>=3.8
+openpyxl>=3.1
+streamlit>=1.40
+# Tests only (not needed for deploy):  pip install pytest scipy

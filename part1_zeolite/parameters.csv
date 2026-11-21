@@ -1,0 +1,33 @@
+name,value,unit,description,source
+R_J_molK,8.314462618,J/(mol K),Ideal gas constant,CODATA 2018
+M_H2O_kg_mol,0.01801528,kg/mol,Molar mass of water,IUPAC
+T_min_K,473.15,K,Lowest temperature of the GSTA/LDF data (200 degC); also lowest for Sips,van Kampen et al.; Adsorption 2021; 27; 577-589 (abstract)
+T_max_K,623.15,K,Highest temperature of the GSTA/LDF data (350 degC),van Kampen et al.; Adsorption 2021; 27; 577-589 (abstract)
+T_max_sips_K,523.15,K,Highest temperature of the Sips fit data (breakthroughs at 200 and 250 degC only),van Kampen et al.; React. Chem. Eng. 2021; Fig. 3 caption
+p_min_bar,0.05,bar,Lowest H2O partial pressure of the data,van Kampen et al.; Adsorption 2021; 27; 577-589 (abstract)
+p_max_bar,4.5,bar,Highest H2O partial pressure of the data,van Kampen et al.; Adsorption 2021; 27; 577-589 (abstract)
+sips_qs_kgkg,0.21,kg/kg,Sips saturation capacity (pellet basis; WORKING capacity after regeneration so feed loading = 0),van Kampen et al.; React. Chem. Eng. 2021; 6; 244-257; Table 3
+sips_b0_1_bar,4.10e-7,1/bar,Sips affinity pre-exponential factor,van Kampen et al.; React. Chem. Eng. 2021; 6; 244-257; Table 3
+sips_Ea_J_mol,-60100,J/mol,Sips affinity energy; b = b0*exp(-Ea/(R*T)) so b rises as T falls,van Kampen et al.; React. Chem. Eng. 2021; 6; 244-257; Table 3 and Eq. 18
+sips_n,1.53,-,Sips heterogeneity exponent; q = qs*(b*p)^(1/n)/(1+(b*p)^(1/n)),van Kampen et al.; React. Chem. Eng. 2021; 6; 244-257; Table 3 and Eq. 17
+gsta_qs_kgkg,0.255,kg/kg,Maximum capacity of the zeolite crystal (25.5 wt.%; fixed in fit),van Kampen et al.; Adsorption 2021; Tables 1 and 3
+gsta_f,0.8,-,Crystal fraction of the pellet (20 wt.% binder),van Kampen et al.; Adsorption 2021; Table 3 and Eq. 9
+gsta_m,2,-,Number of GSTA sites (dual-site),van Kampen et al.; Adsorption 2021; Table 3
+gsta_P0_bar,1.0,bar,Standard pressure P0 in K_n*(p/P0)^n (assumed 1 bar; reproduces the team check values),van Kampen et al.; Adsorption 2021; Eq. 2 (value of P0 assumed)
+gsta_dH1_J_mol,-62400,J/mol,Standard enthalpy of GSTA site 1 (+/- 3.1 kJ/mol),van Kampen et al.; Adsorption 2021; Table 3
+gsta_dS1_J_molK,-115,J/(mol K),Standard entropy of GSTA site 1 (+/- 5 J/mol/K),van Kampen et al.; Adsorption 2021; Table 3
+gsta_dH2_J_mol,-75100,J/mol,Standard enthalpy of GSTA site 2 (+/- 31.0 kJ/mol),van Kampen et al.; Adsorption 2021; Table 3
+gsta_dS2_J_molK,-160,J/(mol K),Standard entropy of GSTA site 2 (+/- 52 J/mol/K),van Kampen et al.; Adsorption 2021; Table 3
+cap_muRT_mol_kg_T473.15,2.63,mol/kg,Capillary condensation parameter mu/(R*T) at 473.15 K (UNIT IS mol/kg),van Kampen et al.; Adsorption 2021; Table 4
+cap_muRT_mol_kg_T523.15,1.67,mol/kg,Capillary condensation parameter mu/(R*T) at 523.15 K (UNIT IS mol/kg),van Kampen et al.; Adsorption 2021; Table 4
+cap_muRT_mol_kg_T573.15,0.849,mol/kg,Capillary condensation parameter mu/(R*T) at 573.15 K (UNIT IS mol/kg),van Kampen et al.; Adsorption 2021; Table 4
+cap_muRT_mol_kg_T623.15,0.196,mol/kg,Capillary condensation parameter mu/(R*T) at 623.15 K (UNIT IS mol/kg),van Kampen et al.; Adsorption 2021; Table 4
+ldf_D0c_m2_s,1.87e-10,m2/s,Pre-exponential factor of corrected micropore diffusivity Dc*,van Kampen et al.; Adsorption 2021; Table 5 and Eq. 17
+ldf_Ea_J_mol,54200,J/mol,Activation energy of micropore diffusion,van Kampen et al.; Adsorption 2021; Table 5
+d_crystal_m,4.0e-6,m,Zeolite crystal diameter (Rc = d/2),van Kampen et al.; Adsorption 2021; Table 1
+d_pellet_m,1.6e-3,m,Pellet diameter used in the paper (web app default is 3 mm),van Kampen et al.; Adsorption 2021; Table 1
+rho_bed_kg_m3,640,kg/m3,Bulk (bed) density of the pellets,van Kampen et al.; Adsorption 2021; Table 1
+eps_bed,0.372,-,Bed void fraction,van Kampen et al.; Adsorption 2021; Table 1
+eps_pellet,0.662,-,Pellet (macropore) porosity,van Kampen et al.; Adsorption 2021; Table 1
+cp_pellet_J_kgK,960,J/(kg K),Heat capacity of the pellets (typical porous-ceramic value; NOT measured for zeolite 3A),Guffanti et al.; Ind. Eng. Chem. Res. 2021; Table 4 and Section 2.2
+dH_ads_J_mol,-45950,J/mol,Old spec value for comparison only (default is sips_Ea_J_mol = -60.1 kJ/mol; team decision 21 Nov 2026),Guffanti et al.; Ind. Eng. Chem. Res. 2021; Table 4 (citing Gabrus et al.); comparison only; default is sips_Ea_J_mol
