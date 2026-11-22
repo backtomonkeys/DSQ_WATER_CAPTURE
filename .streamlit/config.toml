@@ -1,0 +1,10 @@
+# Streamlit theme for the DSQ Water-Capture Core page (Streamlit Cloud reads this
+# file from the repo root; part2_core/.streamlit/config.toml is the same file for
+# running "streamlit run app.py" inside part2_core).
+[theme]
+base = "light"
+primaryColor = "#ff8d46"
+backgroundColor = "#fffce8"
+secondaryBackgroundColor = "#f6f3ea"
+textColor = "#111111"
+font = "sans serif"
