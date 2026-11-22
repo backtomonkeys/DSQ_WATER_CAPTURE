@@ -1,5 +1,7 @@
 # Part 2 — Core column + Screw + Web app
 
+เว็บ: https://dsq-water-capture.streamlit.app · ผลเทสต์ 49/49 (Part 1: 35/35) · วิธีรันอยู่ใน `README.md` ที่ root ของ repo
+
 แบบจำลองส่วนดักน้ำของ DSQ: แกนกลาง moving bed สวนทาง (ก๊าซขึ้น ซีโอไลต์ 3A ลงตามเกลียว)
 แบบ steady state พร้อมหน้าเว็บ Streamlit (โหมด check / design)
 
@@ -65,6 +67,7 @@ Part 2 อ่านค่า ΔH จาก `heat_of_adsorption()`, ρ_bed/ε จ
 - การ์ดดำ 4 ใบปัดเลขเพื่อแสดง (ΔP 3 ตำแหน่ง, gas drag 2 ตำแหน่ง); ตาราง "Criteria table (full precision)" และ Excel ใช้ค่าละเอียดเดิม
 - Panel "Temperature along the core" (แกน x = ความสูงของ bed จากบนลงล่าง) + แท็บ "All profiles (a)"; panel "Design check" ใช้ค่าเกณฑ์ที่ผู้ใช้ตั้ง
 - โลโก้: ใช้ `part2_core/logo.png` ถ้ามี ถ้าไม่มีวาดไอคอน SVG แทน
+- **236.9 °C บนการ์ด กับเส้นกราฟที่จบราว 234.5 °C ไม่ใช่บั๊ก:** 234.5 °C คืออุณหภูมิชั้นเม็ดที่ก้นแกน (จุดสุดท้ายของโปรไฟล์) ส่วน 236.9 °C คือซีโอไลต์ที่ออกจากแกนหลังผ่านชั้นบาง ๆ ที่ก้นแกนซึ่งเจอก๊าซขาเข้า 250 °C — โมเดลใช้อุณหภูมิเดียวในชั้นเม็ด จึงคิดชั้นนี้ด้วยดุลพลังงาน T_out = T_bottom + (W_gas/W_solid)(250 − T_bottom) = 234.5 + 0.156 × 15.5 = 236.9 °C และการ์ดกับเกณฑ์ T ≤ 250 °C ใช้ค่าที่สูงกว่า
 ```powershell
 cd "C:\...\repo"
 streamlit run part2_core/app.py        # หรือ python -m streamlit run part2_core/app.py
