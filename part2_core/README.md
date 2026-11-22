@@ -40,6 +40,7 @@ Part 2 อ่านค่า ΔH จาก `heat_of_adsorption()`, ρ_bed/ε จ
 | ส่วน | ใช้ที่ | ทำไม |
 |---|---|---|
 | Streamlit + `@st.cache_data` | `app.py` | อาจารย์ให้ทำหน้าเว็บ; cache เพื่อไม่คำนวณซ้ำเมื่อค่าเดิม |
+| HTML/CSS ใน `st.markdown(..., unsafe_allow_html=True)`, `.streamlit/config.toml` | `app.py` | หน้าตาตาม mockup (การ์ดดำ, panel ขาว, ปุ่มดำ) — ตกแต่งอย่างเดียว ไม่มีการคำนวณ |
 | `pathlib.Path(__file__)`, `os.path`, `sys.path.append` | `design.py`, `gas_props.py` | หาไฟล์ CSV และโฟลเดอร์ Part 1 จากตำแหน่งไฟล์ ไม่ขึ้นกับโฟลเดอร์ที่รัน และไม่ใช้ `os.chdir` (แชทหลักตัดสิน 21 พ.ย. 2026) |
 | Runge–Kutta 4 + substep | `core_column.py` | Euler ต้องใช้ step เล็กมากถึงจะแม่นพอ (เทสต์ลด step ครึ่งหนึ่ง < 1%) |
 | แกน log (`set_xscale`, `set_yscale`) | `plots.py` | pH2O ลดจาก ~3 bar เหลือ ~0.03 bar; ΔP เปลี่ยนหลายสิบเท่าตาม D (แท็บในโหมด design) |
@@ -59,6 +60,11 @@ Part 2 อ่านค่า ΔH จาก `heat_of_adsorption()`, ρ_bed/ε จ
 ความหนาแน่น, ε, Cp, ΔH อ่านจาก `zeo` เท่านั้น (ไม่มีค่าสำรองใน `core_parameters.csv`); ดักน้ำเกิน 99.9% แสดงเป็น "> 99.9%"
 
 ## หน้าเว็บ (สั้น ๆ)
+หน้าเว็บชื่อ **DSQ Water-Capture Core** — "Moving-bed zeolite 3A core for Green-DME synthesis" (ปรับหน้าตาตาม mockup 22 พ.ย. 2026)
+- Sidebar: โหมด Check/Design → **DESIGN INPUTS** (Zeolite rate, D, H, X, S) → **Advanced settings** (ค่าอื่นทั้งหมดตาม spec) → ปุ่ม **Run simulation** (input อยู่ใน form คำนวณเมื่อกดปุ่ม)
+- การ์ดดำ 4 ใบปัดเลขเพื่อแสดง (ΔP 3 ตำแหน่ง, gas drag 2 ตำแหน่ง); ตาราง "Criteria table (full precision)" และ Excel ใช้ค่าละเอียดเดิม
+- Panel "Temperature along the core" (แกน x = ความสูงของ bed จากบนลงล่าง) + แท็บ "All profiles (a)"; panel "Design check" ใช้ค่าเกณฑ์ที่ผู้ใช้ตั้ง
+- โลโก้: ใช้ `part2_core/logo.png` ถ้ามี ถ้าไม่มีวาดไอคอน SVG แทน
 ```powershell
 cd "C:\...\repo"
 streamlit run part2_core/app.py        # หรือ python -m streamlit run part2_core/app.py

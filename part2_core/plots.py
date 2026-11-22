@@ -364,3 +364,49 @@ def plot_min_rate_vs_feed(df, criteria):
     ax.legend(loc="upper left", fontsize=8)
     plt.tight_layout()
     return fig
+
+
+# ---------------------------------------------------------------------------
+# Web page: "Temperature along the core" panel (restyled page, 22 Nov 2026)
+# ---------------------------------------------------------------------------
+LINE_ORANGE = "#ff8d46"
+
+
+def plot_temperature_along_core(profile, res, T_limit_C):
+    """Bed temperature vs bed height from the top (zeolite inlet) to the bottom.
+
+    x = distance down from the top of the bed, so the zeolite moves left to right
+    and warms up as it takes up water. The dashed line is the temperature limit;
+    the open marker is the zeolite leaving the bottom (counted in the peak T).
+    """
+    H_m = res["case"]["H_m"]
+    x_m = []
+    for z_m in profile["z_m"]:
+        x_m.append(H_m - z_m)           # 0 = top of the bed, H = bottom
+
+    fig, ax = plt.subplots(figsize=(7.5, 3.8))
+    fig.patch.set_facecolor("white")
+    ax.set_facecolor("white")
+    ax.plot(x_m, profile["T_C"], color=LINE_ORANGE, linewidth=3.0)
+    ax.plot([H_m], [res["T_zeo_out_C"]], marker="o", markersize=7,
+            markerfacecolor="white", markeredgecolor=LINE_ORANGE, linestyle="none",
+            clip_on=False)
+    ax.text(H_m, res["T_zeo_out_C"], "zeolite out " + str(round(res["T_zeo_out_C"], 1))
+            + " °C  ", ha="right", va="bottom", fontsize=8, color="#555555")
+    ax.axhline(T_limit_C, color="black", linestyle="--", linewidth=1.0)
+    ax.text(H_m, T_limit_C, "limit " + str(round(T_limit_C)) + " °C", ha="right",
+            va="bottom", fontsize=9, color="black")
+
+    T_low = min(profile["T_C"].min(), res["case"]["T_zeo_in_C"])
+    T_high = max(T_limit_C, res["T_bed_max_C"])
+    ax.set_ylim(T_low - 5.0, T_high + 8.0)
+    ax.set_xlim(0.0, H_m)
+    ax.set_xlabel("bed height, top → bottom (m)", color="#555555")
+    ax.set_ylabel("T (°C)", color="#555555")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_color("#999999")
+    ax.spines["bottom"].set_color("#999999")
+    ax.tick_params(colors="#555555")
+    plt.tight_layout()
+    return fig
