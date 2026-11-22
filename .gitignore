@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Output files written by the Part 2 program (made again on every run)
+part2_core/core_check.xlsx
+part2_core/core_design.xlsx
+part2_core/design_results.xlsx
+part2_core/base_case_check.csv
+
+# Local Python environment
+.venv/
