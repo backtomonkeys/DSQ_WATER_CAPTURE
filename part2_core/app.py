@@ -23,7 +23,15 @@ import core_column as cc
 import design as dz
 import plots
 
-st.set_page_config(page_title="DSQ Water-Capture Core", layout="wide")
+# Logo: part2_core/logo.png if the team uploaded it (browser tab + page header);
+# without the file the tab keeps Streamlit's icon and the header draws LOGO_SVG
+LOGO_FILE = os.path.join(dz.HERE, "logo.png")
+if os.path.isfile(LOGO_FILE):
+    PAGE_ICON = LOGO_FILE
+else:
+    PAGE_ICON = None
+st.set_page_config(page_title="DSQ Water-Capture Core", page_icon=PAGE_ICON,
+                   layout="wide")
 
 PARAMS = dz.load_params()
 ZEOLITE_CHOICES = {
@@ -41,7 +49,6 @@ LIFT_HELP = ("Largest LOCAL value along the height of (Ergun pressure gradient) 
              "hottest and wettest and flows fastest. The height average is shown below.")
 DESIGN_FEED_T_LIST_C = [200.0, 210.0, 220.0, 230.0, 240.0, 245.0, 250.0]  # 245: rate ~2x
 MODES = ["Check (I give the size)", "Design (find the size)"]
-LOGO_FILE = os.path.join(dz.HERE, "logo.png")
 LOGO_SVG = ('<svg width="56" height="56" viewBox="0 0 56 56">'
             '<circle cx="28" cy="28" r="22" fill="none" stroke="#f8c45c" stroke-width="6"/>'
             '<path d="M28 6 A22 22 0 0 0 8 36" fill="none" stroke="#ff8d46" '
