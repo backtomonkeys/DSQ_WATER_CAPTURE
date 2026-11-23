@@ -35,8 +35,8 @@ st.set_page_config(page_title="DSQ Water-Capture Core", page_icon=PAGE_ICON,
 
 PARAMS = dz.load_params()
 ZEOLITE_CHOICES = {
-    "Part 1 Zeolite3A (real, default)": "auto",
-    "Sips preview (no Part 1 needed)": "preview",
+    "Zeolite 3A, full model (default)": "auto",
+    "Zeolite 3A, Sips only (simplified)": "preview",
     "Stub: constant 0.1 kg/kg (program check only)": "stub",
 }
 HEATS = {"-60.1 kJ/mol (Sips Ea, default)": "sips",
@@ -355,7 +355,7 @@ with st.sidebar.form("design_inputs"):
                                 0.5),
         }
         st.markdown("**Comparison options (not the main model)**")
-        iso_label = st.selectbox("Isotherm (GSTA choices need the Part 1 Zeolite3A)",
+        iso_label = st.selectbox("Isotherm (GSTA needs the full zeolite model)",
                                  list(ISOTHERMS))
         U_wall = st.number_input("Wall heat loss U (W/(m2 K)), default 0", 0.0, 200.0,
                                  PARAMS["U_wall_Wm2K"], 5.0)
@@ -368,7 +368,7 @@ if zeo_source == "auto":
     iso_model = ISOTHERMS[iso_label]
 else:
     gas_source = "stub"
-    iso_model = "sips"                  # GSTA choices need the Part 1 Zeolite3A
+    iso_model = "sips"                  # GSTA choices need the full zeolite model
 
 base_case = dz.updated_case(dz.default_case(PARAMS), {
     "X": X, "S": S, "p_bar": p_bar, "T_zeo_in_C": T_zeo_in_C, "q_in_kgkg": q_in,
@@ -393,12 +393,12 @@ try:
     zeolite_now, zeo_used, zeo_limits = get_zeolite(zeo_source, iso_model)
 except dz.Part1NotFoundError:
     st.error("Part 1 not found: put zeolite.py, feed_gas.py and parameters.csv in "
-             + str(dz.PART1_DIR) + ", or choose the Sips preview under Advanced settings.")
+             + str(dz.PART1_DIR) + ", or choose \"Sips only (simplified)\" under Advanced settings.")
     st.stop()
 T_EDGE_C = zeo_limits["loading"]["T_max_K"] - 273.15        # 250 °C for Sips
 P_HENRY_BAR = zeo_limits["loading"]["p_min_bar"]            # 0.05 bar
 if zeo_used != "part1":
-    st.info("Zeolite model: " + zeo_used + " - not the Part 1 Zeolite3A; use it only to "
+    st.info("Zeolite model: " + zeo_used + " - not the full Zeolite 3A model; use it only to "
             "try the program, not for the report.")
 
 MODEL_NOTE = ("Counter-current moving bed (gas up, zeolite down in the Archimedes screw), "
